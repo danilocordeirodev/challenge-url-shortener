@@ -3,7 +3,9 @@ spring:
     name: challenge-url-shortener
   data:
     mongodb:
-      auto-index-creation: true
-      host: localhost
-      port: 27018
+      authentication-database: admin
+      username: root
+      password: password
       database: shortener-db
+      port: 27018
+      host: localhost
