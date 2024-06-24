@@ -2,6 +2,7 @@ package com.manedwolf.challenge_url_shortener.service.impl;
 
 import com.manedwolf.challenge_url_shortener.domain.dto.UrlRequestDTO;
 import com.manedwolf.challenge_url_shortener.domain.dto.UrlResponseDTO;
+import com.manedwolf.challenge_url_shortener.exception.UrlNotFountException;
 import com.manedwolf.challenge_url_shortener.repository.UrlRepository;
 import com.manedwolf.challenge_url_shortener.repository.entity.UrlEntity;
 import com.manedwolf.challenge_url_shortener.service.UrlService;
@@ -37,7 +38,8 @@ public class UrlServiceImpl implements UrlService {
 
     @Override
     public HttpHeaders redirect(String id) {
-        UrlEntity url = urlRepository.findById(id).orElseThrow();
+        UrlEntity url = urlRepository.findById(id)
+                .orElseThrow(() -> new UrlNotFountException(id));
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(URI.create(url.getUrl()));
