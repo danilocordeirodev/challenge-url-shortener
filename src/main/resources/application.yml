@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: challenge-url-shortener
+  data:
+    mongodb:
+      auto-index-creation: true
+      host: localhost
+      port: 27018
+      database: shortener-db
